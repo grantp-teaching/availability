@@ -3,7 +3,7 @@
 
 param(
 [Parameter()]
-[int] $Variant = (Get-Random -Min 0 -Max 3)
+[int] $Variant = (Get-Random -Min 0 -Max 2)
 )
 
 $GreenCheck = @{
@@ -51,23 +51,6 @@ MTBF = 1 / ( failure rate )
      = $($years * 365) / ( $nFailures ) 
      = $MTBF $Units
 "
-}
-2 {
-$ExtraUnits = Get-Random -Min 1 -Max 3
-$N = Get-Random -Min $ExtraUnits -Max $($ExtraUnits+2)
-$TotalUnits = $N + $ExtraUnits
-$QuestionText = "A system has $TotalUnits units installed and is said to be N+$ExtraUnits redundant. How many units are required for normal operation?"
-$Target = $N
-$Units = ""
-
-$Solution = "
-System has $Total units to provide N+$ExtraUnits.
-Of this, $ExtraUnits units are not required for normal operation.
-required units = total units - extra units 
-	       = $TotalUnits - $ExtraUnits
-	       = $N 
-"
-
 }
 default {
 	Write-Error "Variant $Variant not found"
